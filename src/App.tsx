@@ -1,23 +1,17 @@
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import NavBar from './components/Navbar/NavBar';
-import Login from './components/Layout/Login'
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Header from './components/Header';
+import Box from './components/Box'
 
 
 const App = () => {
   return (
-    <Box sx={{
-      width: 375,
-      height: 667,
-      backgroundColor: 'primary.light',
-      '&:hover': {
-      backgroundColor: 'transparent',
-      opacity: [0.9, 0.8, 0.7],
-      },
-    }}>
+    <Box>
       <CssBaseline />
-      <NavBar/>
+      <Header />
+      <br/>
       <Login />
     </Box> 
   )    
