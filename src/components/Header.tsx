@@ -18,8 +18,7 @@ const Header = () => {
     const classes = useStyles();
 
     return(
-        <div>
-        <AppBar position="static" color='secondary'>
+        <AppBar position='sticky' color='secondary'>
             <Toolbar>
                 <Typography variant="h6" color="inherit" className={classes.typo}>
                     
@@ -35,7 +34,6 @@ const Header = () => {
                 </IconButton>
             </Toolbar> 
         </AppBar>
-        </div>
     )
 }
 export default Header;

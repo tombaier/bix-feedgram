@@ -9,6 +9,10 @@ const useStyles = makeStyles((theme) => ({
         textAlign:'center', 
         justifyContent: 'center',
     },
+    img: {
+        width: 150, 
+        height: 110, 
+    }
 }))
 
 
@@ -18,6 +22,11 @@ const Signup = () => {
     return(
         <Box>
             <Typography color="inherit" align="center">
+                <img 
+                    src={`${process.env.PUBLIC_URL}/assets/logo.png`} 
+                    alt="logo"
+                    className={classes.img}/>
+                <br/>
                 <TextField id="outlined-basic" label="Username" variant="outlined"/>
                 <br/>
                 <br/>
@@ -27,7 +36,7 @@ const Signup = () => {
                 <TextField id="outlined-basic" label="Password" variant="outlined" type="password"/>
                 <br/>
                 <br/>
-                <TextField id="outlined-basic" label="Repeat Password" variant="outlined" type="password"/>
+                <TextField id="outlined-basic" label="Password Confirmation" variant="outlined" type="password"/>
                 <br/>
                 <br/>
                 <Grid container justify="center">
