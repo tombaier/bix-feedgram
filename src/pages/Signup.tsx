@@ -1,6 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { Box, Button, makeStyles, TextField, Grid } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -40,16 +41,17 @@ const Signup = () => {
                 <br/>
                 <br/>
                 <Grid container justify="center">
-                    <Button 
-                        variant="contained" 
-                        color="secondary"
-                    >
-                        Sign up
-                    </Button>
+                    <Link to='/feed'>
+                        <Button 
+                            variant="contained" 
+                            color="secondary"
+                        >
+                            Sign Up
+                        </Button>
+                    </Link>
                 </Grid>
-                <p>
-                    <a href="#" className={classes.style}> You already have an account? Login! </a>
-                </p>
+                <br/>
+                <Link to='/Login'>You already have an account? Login!</Link>
             </Typography>
         </Box>
     )
