@@ -1,8 +1,8 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import { Box, Button, makeStyles, TextField, Grid, Paper, styled } from '@material-ui/core'
+import { Box, Button, makeStyles, TextField, Grid } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import HeaderStart from '../components/HeaderStart'
+
 
 const useStyles = makeStyles((theme) => ({
     style: {
