@@ -8,14 +8,15 @@ import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import Avatar from '@mui/material/Avatar'
+import { Link } from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.white, 0.50),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.60),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -71,10 +72,6 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -92,8 +89,14 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}> Profile </MenuItem>
-      <MenuItem onClick={handleMenuClose}> Logout </MenuItem> 
+      <Link to='/profile'>
+        <MenuItem> Profile </MenuItem>
+      </Link>
+      
+      <Link to='/login'>
+        <MenuItem> Logout </MenuItem> 
+      </Link>
+      
     </Menu>
   );
 
@@ -122,7 +125,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <Avatar />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -153,7 +156,9 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <Avatar 
+                sx={{ width: 40, height: 40 }}
+              />
             </IconButton>
           </Box>
         </Toolbar>

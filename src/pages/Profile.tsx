@@ -4,6 +4,8 @@ import { Center } from '../components/Center'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import { Logout } from '@mui/icons-material'
+import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom'
 
 const Profile = () => {
     return(
@@ -18,8 +20,7 @@ const Profile = () => {
             >
                 <p> Username </p>
                 <p> Mail </p>
-            </Typography>
-                   
+            </Typography> 
             
             <Box p={{xs: 2, sm: 3, md: 5}}>
                 <Paper>
@@ -38,9 +39,16 @@ const Profile = () => {
                     </Box>
                 </Paper>
             </Box>
-            <Logout 
-                sx={{ width: 24, height: 24 }}
-            />
+
+            <Link to='/login'>
+                <IconButton>
+                    <Logout 
+                        sx={{ width: 40, height: 40 }}
+                    />
+                </IconButton>
+            </Link>
+            
+
         </Center>
     )
 }

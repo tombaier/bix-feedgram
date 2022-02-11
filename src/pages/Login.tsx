@@ -45,7 +45,7 @@ const Login = () => {
                     </Link>
                 </Grid>
                 <br/>
-                <Link to='/Signup'>You don't have an account yet? Sign up!</Link>
+                <Link to='/signup'>You don't have an account yet? Sign up!</Link>
             </Typography>
         </Box>
     )
