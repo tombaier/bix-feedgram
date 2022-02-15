@@ -1,11 +1,11 @@
-import React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Feed from './pages/Feed';
-import Profile from './pages/Profile';
-import HeaderStart from './components/HeaderStart';
+import React from 'react'
+import CssBaseline from '@mui/material/CssBaseline'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Feed from './pages/Feed'
+import Profile from './pages/Profile'
 import HeaderMain from './components/HeaderMain'
+import { HeaderBase } from './components/HeaderBase'
 import Box from './components/Box'
 import { Route, Routes } from 'react-router-dom'
 
