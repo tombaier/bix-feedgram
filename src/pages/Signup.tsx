@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography'
 import { Box, Button, TextField, Grid } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
-import { signInWithGoogle } from '../service/firebase'
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -52,15 +51,7 @@ const Signup = () => {
                         </Button>
                     </Link>
                 </Box>
-                <br/>
-                <Button 
-                    variant="contained" 
-                    color="inherit"
-                    onClick={ signInWithGoogle }
-                >
-                    Sign in with Google
-                </Button>
-                <br />   
+                <br/>   
                 <br />
                 <Link to='/Login'>You already have an account? Login!</Link>
             </Typography>

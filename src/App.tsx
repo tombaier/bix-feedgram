@@ -9,7 +9,6 @@ import { HeaderBase } from './components/HeaderBase'
 import Box from './components/Box'
 import { Route, Routes } from 'react-router-dom'
 
-
 const App = () => {
   return (
     <Box>
@@ -18,7 +17,7 @@ const App = () => {
       <br/>
       <main>
         <Routes>
-          <Route path='' element={<Login />} />
+          <Route path='' element={<Feed />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/feed' element={<Feed />} />
