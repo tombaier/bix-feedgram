@@ -5,9 +5,10 @@ import Signup from './pages/Signup';
 import Feed from './pages/Feed';
 import Profile from './pages/Profile';
 import HeaderStart from './components/HeaderStart';
-import HeaderMain from './components/HeaderMain';
+import HeaderMain from './components/HeaderMain'
 import Box from './components/Box'
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom'
+
 
 const App = () => {
   return (

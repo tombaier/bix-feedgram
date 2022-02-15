@@ -1,15 +1,52 @@
 import React from 'react'
-import { Box, Button, makeStyles, TextField, Grid } from '@material-ui/core'
-import Postcard from './Postcard'
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography} from '@mui/material'
+import { Favorite, Comment, Share, MoreVert } from '@mui/icons-material' 
+import { makeStyles } from '@mui/styles'
 
-function Post() {
-    return (
-        <Grid container>
-            <Grid item container xs={12} justifyContent='center'>
-                <Grid item xs={10}> <Postcard /> </Grid>
-            </Grid>
-        </Grid>
-    )
+const useStyles = makeStyles({
+    media: {
+        height: 0,
+        paddingTop: '100%'
+    }
+})
+
+const Post = () => {
+  const {media} = useStyles()  
+  return (
+      <Card>
+          <CardHeader 
+            avatar = {<Avatar />}
+            title = 'Just a Test'
+            subheader = {new Date().toDateString()}
+            action = {
+                <IconButton>
+                    <MoreVert />
+                </IconButton> 
+            }
+          />
+          <CardMedia className={media} />
+
+          <CardActions disableSpacing>
+              <IconButton>
+                    <Favorite />
+              </IconButton>
+              
+              <IconButton>
+                    <Comment />
+              </IconButton>
+          
+              <IconButton>
+                    <Share />
+              </IconButton>
+          </CardActions>
+
+          <CardContent>
+              <Typography variant='body2' color='textSecondary' component='p'>
+                  This is the first post on FEEDGRAM! Welcome to you all!
+              </Typography>
+          </CardContent>
+      </Card>
+  )
 }
 
 export default Post;

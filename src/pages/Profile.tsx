@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Paper } from '@material-ui/core'
+import { Box, Paper } from '@mui/material'
 import { Center } from '../components/Center'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
@@ -18,8 +18,8 @@ const Profile = () => {
                 variant='h6'
                 textAlign='center'
             >
-                <p> Username </p>
-                <p> Mail </p>
+                <p> {localStorage.getItem("name")} </p>
+                <p> {localStorage.getItem("email")} </p>
             </Typography> 
             
             <Box p={{xs: 2, sm: 3, md: 5}}>

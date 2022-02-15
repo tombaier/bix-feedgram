@@ -1,7 +1,9 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import { Box, Button, makeStyles, TextField, Grid } from '@material-ui/core'
+import Typography from '@mui/material/Typography'
+import { Box, Button, TextField, Grid } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
+import { signInWithGoogle } from '../service/firebase'
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -40,7 +42,7 @@ const Signup = () => {
                 <TextField id="outlined-basic" label="Password Confirmation" variant="outlined" type="password"/>
                 <br/>
                 <br/>
-                <Grid container justify="center">
+                <Box className='style'>
                     <Link to='/feed'>
                         <Button 
                             variant="contained" 
@@ -49,8 +51,17 @@ const Signup = () => {
                             Sign Up
                         </Button>
                     </Link>
-                </Grid>
+                </Box>
                 <br/>
+                <Button 
+                    variant="contained" 
+                    color="inherit"
+                    onClick={ signInWithGoogle }
+                >
+                    Sign in with Google
+                </Button>
+                <br />   
+                <br />
                 <Link to='/Login'>You already have an account? Login!</Link>
             </Typography>
         </Box>
