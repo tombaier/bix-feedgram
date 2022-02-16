@@ -1,18 +1,20 @@
 import Avatar from '@mui/material/Avatar'
 import { HeaderBase } from './HeaderBase'
-import { SearchBar } from './Search'
+import { SearchBar } from './SearchBar'
 import { MenuBase } from './MenuBase';
 
 
-export default function PrimarySearchAppBar() {
+export const HeaderMain = () => {
   return (
     <HeaderBase>
-      <SearchBar open={false} />
+      <SearchBar/>
       <MenuBase>
         <Avatar 
           sx={{ width: 40, height: 40 }}
         />
       </MenuBase>  
     </HeaderBase>
-  );
-}
+  )
+};
+
+export default HeaderMain;

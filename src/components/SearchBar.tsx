@@ -1,5 +1,3 @@
-import { FC } from 'react';
-import { MenuProps } from "@mui/material/Menu";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -44,12 +42,10 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
 
-export const SearchBar: FC<MenuProps> = ({ children, ...props }) => {
+export const SearchBar = ()  => {
 
 	return (
-    <Search
-	    {...props}
-	  >
+    <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
@@ -57,7 +53,6 @@ export const SearchBar: FC<MenuProps> = ({ children, ...props }) => {
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
       />
-      {children}
 	  </Search>
   )
 };
