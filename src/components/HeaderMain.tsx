@@ -16,6 +16,9 @@ export const HeaderMain = () => {
           <Link to='/profile'>
             <MenuItem> Profile </MenuItem>
           </Link>
+          <Link to='/feed'>
+            <MenuItem> Feed </MenuItem>
+          </Link>
           <Link to='/login'>
             <MenuItem> Logout </MenuItem>
           </Link>
