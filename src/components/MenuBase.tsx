@@ -1,10 +1,14 @@
-import React, { FC } from 'react';
-import Box, { BoxProps } from "@mui/material/Box";
+import * as React from 'react';
+import Box from "@mui/material/Box";
 import Menu from '@mui/material/Menu'
-import { IconButton, MenuItem } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { IconButton, IconButtonProps } from '@mui/material';
 
-export const MenuBase: FC<BoxProps> = ({ children, ...props }) => {
+export interface IMenuProps {
+	menuIcon: IconButtonProps,
+	menuContent: React.ReactNode
+};
+
+export const MenuBase = (props: IMenuProps) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
 	const isMenuOpen = Boolean(anchorEl);
@@ -33,20 +37,13 @@ export const MenuBase: FC<BoxProps> = ({ children, ...props }) => {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<Link to='/profile'>
-				<MenuItem> Profile </MenuItem>
-			</Link>
-				
-			<Link to='/login'>
-				<MenuItem> Logout </MenuItem> 
-			</Link>
+			{props.menuContent}
 		</Menu>
 	)
 
 	return (
 		<Box 
 			sx={{ flexGrow: 1 }}
-			{...props}
 		>
 			<Box sx={{ display: { md: 'flex' } }}>
 				<IconButton
@@ -58,7 +55,7 @@ export const MenuBase: FC<BoxProps> = ({ children, ...props }) => {
 				onClick={handleProfileMenuOpen}
 				color="inherit"
 				>
-					{children}
+					{props.menuIcon}
 				</IconButton>
 			</Box>
 			{renderMenu}
