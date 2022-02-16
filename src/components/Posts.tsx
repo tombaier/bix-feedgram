@@ -1,5 +1,4 @@
-import React from 'react'
-import { Box, Button, makeStyles, TextField, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import Post from './Post'
 
 function Posts() {

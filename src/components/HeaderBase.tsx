@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Box, { BoxProps } from "@mui/material/Box";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';

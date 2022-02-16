@@ -1,4 +1,3 @@
-import React from 'react';
 import Avatar from '@mui/material/Avatar'
 import { HeaderBase } from './HeaderBase'
 import { SearchBar } from './Search'

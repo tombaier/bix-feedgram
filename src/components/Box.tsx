@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Box, { BoxProps } from "@mui/material/Box";
 
 export const Center: FC<BoxProps> = ({ children, ...props }) => {
