@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography} from '@mui/material'
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography } from '@mui/material'
 import { Favorite, Comment, Share, MoreVert } from '@mui/icons-material' 
 import { makeStyles } from '@mui/styles'
 
@@ -45,7 +45,7 @@ const Post = () => {
               </Typography>
           </CardContent>
       </Card>
-  )
+    )
 }
 
 export default Post;

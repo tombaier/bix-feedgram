@@ -1,8 +1,14 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
-import { Box, Button, TextField, Grid } from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { HeaderBase } from '../components/HeaderBase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth, signInWithGoogle, signUpWithEmailAndPassword } from "../services/firebase";
+import { Center } from '../components/Center'
+import GoogleButton from 'react-google-button'
+
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -20,42 +26,64 @@ const useStyles = makeStyles((theme) => ({
 
 const Signup = () => {
     const classes = useStyles();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+
+    const signup = () => {
+        if (!name ) alert ("Please enter all information ");
+        if (!email ) alert ("Please enter email");
+        if (!password ) alert ("Please enter password");        
+        signUpWithEmailAndPassword (name, email, password);
+    };
+
+    useEffect (() => {
+        if (loading) return;
+        if (user) navigate("/feed");
+    }, [user, loading]);
+    
 
     return(
-        <Box>
-            <Typography color="inherit" align="center">
-                <img 
-                    src={`${process.env.PUBLIC_URL}/assets/logo.png`} 
-                    alt="logo"
-                    className={classes.img}/>
-                <br/>
-                <TextField id="outlined-basic" label="Username" variant="outlined"/>
-                <br/>
-                <br/>
-                <TextField id="outlined-basic" label="Mail" variant="outlined"/>
-                <br/>
-                <br/>
-                <TextField id="outlined-basic" label="Password" variant="outlined" type="password"/>
-                <br/>
-                <br/>
-                <TextField id="outlined-basic" label="Password Confirmation" variant="outlined" type="password"/>
-                <br/>
-                <br/>
-                <Box className='style'>
-                    <Link to='/feed'>
-                        <Button 
-                            variant="contained" 
+        <>
+            <HeaderBase />
+            <Box sx={{paddingBottom: '8px'}}/>
+            <Box>
+                <Typography color="inherit" align="center">
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+                        alt="logo"
+                        className={classes.img} 
+                    />
+                    <Box sx={{ paddingBottom: '20px' }} />
+                    <TextField id="outlined-basic" label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} />
+                    <Box sx={{ paddingBottom: '20px' }} />
+                    <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Box sx={{ paddingBottom: '20px' }} />
+                    <TextField id="outlined-basic" label="Password" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Box sx={{ paddingBottom: '20px' }} />
+                    <Box className='style'>
+                        <Button
+                            variant="contained"
                             color="secondary"
+                            onClick={signup}
                         >
                             Sign Up
                         </Button>
-                    </Link>
-                </Box>
-                <br/>   
-                <br />
-                <Link to='/Login'>You already have an account? Login!</Link>
-            </Typography>
-        </Box>
+                    </Box>
+                    <Box sx={{ paddingBottom: '10px' }} />
+                    <div>
+                        You already have an account? <Link to='/Login'>Login!</Link>
+                    </div>
+                    <Box sx={{ paddingBottom: '10px' }} />
+                    <Center>
+                        <GoogleButton onClick={signInWithGoogle}/>
+                    </Center>
+                    
+                </Typography>
+            </Box>
+        </>
     )
 }
 export default Signup;

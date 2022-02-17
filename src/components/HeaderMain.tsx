@@ -4,9 +4,11 @@ import { SearchBar } from './SearchBar'
 import { MenuBase } from './MenuBase';
 import { Link } from 'react-router-dom';
 import { MenuItem } from '@mui/material';
+import { logout } from '../services/firebase';
 
 
 export const HeaderMain = () => {
+
   return (
     <HeaderBase>
       <SearchBar/>
@@ -19,12 +21,12 @@ export const HeaderMain = () => {
           <Link to='/feed'>
             <MenuItem> Feed </MenuItem>
           </Link>
-          <Link to='/login'>
-            <MenuItem> Logout </MenuItem>
-          </Link>
+          <MenuItem
+            onClick={logout}
+          > 
+            Logout 
+          </MenuItem>
         </>} />
     </HeaderBase>
   )
 };
-
-export default HeaderMain;

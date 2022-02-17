@@ -1,9 +1,13 @@
-import React from 'react'
 import Typography from '@mui/material/Typography'
-import { Box, Button, TextField, Grid } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Box, Button, TextField } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom'
 import { makeStyles } from '@mui/styles'
-
+import { HeaderBase } from '../components/HeaderBase'
+import { useEffect, useState } from 'react'
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../services/firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import GoogleButton from 'react-google-button'
+import { Center } from '../components/Center'
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -20,35 +24,61 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
     const classes = useStyles();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loading) {
+            // maybe trigger a loading screen
+            return;
+        }
+        if (user) {
+            navigate("/feed")
+        };
+    }, [user, loading]);
 
     return(
-        <Box>
-            <Typography color="inherit" align="center">
-                <img 
-                src={`${process.env.PUBLIC_URL}/assets/logo.png`} 
-                alt="logo"
-                className={classes.img}/>
-                <br/>
-                <TextField id="outlined-basic" label="Username" variant="outlined"/>
-                <br/>
-                <br/>
-                <TextField id="outlined-basic" label="Password" variant="outlined" type="password"/>
-                <br/>
-                <br/>
-                <Box className='style'>
-                    <Link to='/feed'>
-                        <Button 
-                            variant="contained" 
+        <>
+            <HeaderBase />
+            <Box sx={{ paddingBottom: '8px' }} />
+            <Box>
+                <Typography color="inherit" align="center">
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+                        alt="logo"
+                        className={classes.img} />
+                    <Box sx={{ paddingBottom: '20px' }} />
+                    <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Box sx={{ paddingBottom: '20px' }} />
+                    <TextField id="outlined-basic" label="Password" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Box sx={{ paddingBottom: '20px' }} />
+                    <Box className='style'>
+                        <Button
+                            variant="contained"
                             color="secondary"
+                            onClick = {() => logInWithEmailAndPassword(email, password)}
                         >
                             Login
                         </Button>
-                    </Link>
-                </Box>
-                <br/>
-                <Link to='/signup'>You don't have an account yet? Sign up!</Link>
-            </Typography>
-        </Box>
+                    </Box>
+                    <Box sx={{ paddingBottom: '10px' }} />
+                    <div>
+                        <Link to='/reset'> Reset Password!</Link>
+                    </div>
+                    <Box sx={{ paddingBottom: '10px' }} />
+                    <div>
+                        You don't have an account yet? <Link to='/signup'> Sign up!</Link>
+                    </div>
+                    <Box sx={{ paddingBottom: '10px' }} />
+                    <Center>
+                        <GoogleButton onClick={signInWithGoogle}/>
+                    </Center>
+                    
+                </Typography>
+            </Box>
+        </>
     )
 }
 
