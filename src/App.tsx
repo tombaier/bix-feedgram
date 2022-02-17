@@ -1,32 +1,22 @@
-import React from 'react'
-import CssBaseline from '@mui/material/CssBaseline'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Feed from './pages/Feed'
 import Profile from './pages/Profile'
-import HeaderMain from './components/HeaderMain'
-import { HeaderBase } from './components/HeaderBase'
-import Box from './components/Box'
+import Reset from './pages/Reset'
 import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
-    <Box>
-      <CssBaseline />
-      <HeaderMain />
-      <br/>
-      <main>
+      <div>
         <Routes>
           <Route path='' element={<Feed />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/feed' element={<Feed />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/reset' element={<Reset />} />
         </Routes>
-      </main>
-    </Box>
-
-       
+      </div>
   )    
 }
 
