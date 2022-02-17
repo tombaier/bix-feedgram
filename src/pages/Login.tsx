@@ -1,6 +1,9 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import { Box, Button, makeStyles, TextField, Grid, Paper, styled } from '@material-ui/core'
+import Typography from '@mui/material/Typography'
+import { Box, Button, TextField, Grid } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { makeStyles } from '@mui/styles'
+
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -32,17 +35,18 @@ const Login = () => {
                 <TextField id="outlined-basic" label="Password" variant="outlined" type="password"/>
                 <br/>
                 <br/>
-                <Grid container justify="center">
-                    <Button 
-                        variant="contained" 
-                        color="secondary"
-                    >
-                        Login
-                    </Button>
-                </Grid>
-                <p>
-                    <a href="#" className={classes.style}> You don't have an account yet? Sign up! </a>
-                </p>
+                <Box className='style'>
+                    <Link to='/feed'>
+                        <Button 
+                            variant="contained" 
+                            color="secondary"
+                        >
+                            Login
+                        </Button>
+                    </Link>
+                </Box>
+                <br/>
+                <Link to='/signup'>You don't have an account yet? Sign up!</Link>
             </Typography>
         </Box>
     )

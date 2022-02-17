@@ -13,5 +13,3 @@ export const Center: FC<BoxProps> = ({ children, ...props }) => {
 		{children}
 	</Box>;
 };
-
-export default Box;
