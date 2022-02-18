@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { query, collection, getDocs, where } from 'firebase/firestore'
 import Typography from '@mui/material/Typography'
 import Box  from '@mui/material/Box'
-import { Posts } from '../components/Posts'
+import { Post } from '../components/Post'
 import { HeaderMain } from '../components/HeaderMain'
 import { auth, db } from '../services/firebase'
 
@@ -24,6 +24,19 @@ const Feed = () => {
         }
     };
 
+    const [posts, setPosts] = useState([
+        {
+            username: 'TomBaier27',
+            caption: 'Look at these amazing cats *_*',
+            imageUrl: 'https://www.rover.com/blog/wp-content/uploads/2019/12/two-gray-kittens-pixabay.jpg'
+        },
+        {
+            username: 'NiklasW471',
+            caption: 'Look at this beautiful dog <3',
+            imageUrl: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'
+        }
+    ]);
+
     useEffect (() => {
         if (loading) return; 
         if (!user) return navigate("/login");
@@ -33,10 +46,14 @@ const Feed = () => {
     return(
         <>
             <HeaderMain />
-            <Box sx={{ paddingBottom: '12px' }} />
+            <Box sx={{ paddingBottom: '20px' }} />
             <Box>
                 <Typography color="inherit" align="center">
-                    <Posts />
+                    {
+                        posts.map(post => (
+                            <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+                        ))
+                    }
                 </Typography>
             </Box>
         </>
