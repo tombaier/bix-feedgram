@@ -35,8 +35,8 @@ const Login = () => {
             return;
         }
         if (user) {
-            navigate("/feed")
-        };
+            navigate("/feed");
+        }
     }, [user, loading]);
 
     return(
@@ -75,7 +75,6 @@ const Login = () => {
                     <Center>
                         <GoogleButton onClick={signInWithGoogle}/>
                     </Center>
-                    
                 </Typography>
             </Box>
         </>

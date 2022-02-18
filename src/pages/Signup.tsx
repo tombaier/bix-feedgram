@@ -40,8 +40,12 @@ const Signup = () => {
     };
 
     useEffect (() => {
-        if (loading) return;
-        if (user) navigate("/feed");
+        if (loading) {
+            return;
+        }
+        if (user) {
+            navigate("/feed");
+        }
     }, [user, loading]);
     
 
