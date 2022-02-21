@@ -27,13 +27,20 @@ const useStyles = makeStyles((theme) => ({
 const Reset = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [user, error] = useAuthState(auth);
   const navigate = useNavigate();
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (loading) return;
     if (user) navigate("/login");
-  }, [user, loading]);
+  }, [user]);
+
+  const resetPassword = async () => {
+    setHasError(false)
+    await sendPasswordReset(email).catch(e => {
+      setHasError(true)
+    })
+  }
 
   return (
     <>
@@ -52,7 +59,7 @@ const Reset = () => {
             <Button
               variant="contained"
               color="secondary"
-              onClick = {() => sendPasswordReset(email)}
+              onClick = {resetPassword}
             >
               Send password reset email
             </Button>
