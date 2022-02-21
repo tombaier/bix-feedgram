@@ -11,7 +11,7 @@ import { AddCircle } from '@mui/icons-material'
 import { Center } from '../components/Center'
 
 const Feed = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, error] = useAuthState(auth);
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const fetchUserName = async () => {
@@ -40,10 +40,9 @@ const Feed = () => {
     ]);
 
     useEffect (() => {
-        if (loading) return; 
         if (!user) return navigate("/login");
         fetchUserName();
-    }, [user, loading]);
+    }, [user]);
 
     return(
         <>
