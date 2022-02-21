@@ -41,38 +41,34 @@ const signInWithGoogle = async () => {
 };
 
 const logInWithEmailAndPassword = async (email : string, password : string) => {
-    try {
-        await signInWithEmailAndPassword (auth, email, password);
-    } catch (err : any) {
-        console.error(err);
-        alert(err.message);
-    }
+    return ( await signInWithEmailAndPassword (auth, email, password).catch(e => {
+        console.error(e)
+        alert(e.message);
+    }))        
 };
 
 const signUpWithEmailAndPassword = async (name : string, email : string, password :string) => {
-    try {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
-        const user = res.user;
-        await addDoc(collection(db, "users"), {
-            uid: user.uid,
-            name, 
-            authProvider: "local",
-            email,
-        });
-    } catch (err : any) {
-        console.error(err);
-        alert(err.message);
-    }
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
+    return (await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name, 
+        authProvider: "local",
+        email,
+    }).catch (e => {
+        console.error(e)
+        alert(e.message)
+    }))
 };
 
 const sendPasswordReset = async (email : string) => {
-    try {
-        await sendPasswordResetEmail (auth, email);
-        alert ("Password reset link sent!");
-    } catch (err : any) {
-        console.error(err);
-        alert(err.message);
-    }
+    return (
+        await sendPasswordResetEmail (auth, email).catch(e => {
+            console.error(e)
+            alert(e.message)
+        })
+        //alert ("Password reset link sent!");
+    )
 };
 
 const logout = () => {
