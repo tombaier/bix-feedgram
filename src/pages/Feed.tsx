@@ -7,6 +7,8 @@ import Box  from '@mui/material/Box'
 import { Post } from '../components/Post'
 import { HeaderMain } from '../components/HeaderMain'
 import { auth, db } from '../services/firebase'
+import { AddCircle } from '@mui/icons-material'
+import { Center } from '../components/Center'
 
 const Feed = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -20,7 +22,7 @@ const Feed = () => {
             setName(data.name);
         } catch (err) {
             console.error(err);
-            alert ("An error occured while fetching user data");
+            alert ("An error occurred while fetching user data");
         }
     };
 
@@ -46,6 +48,13 @@ const Feed = () => {
     return(
         <>
             <HeaderMain />
+            <Box sx={{ paddingBottom: '20px' }} />
+            <Center>
+                <AddCircle
+                    color='secondary'
+                    fontSize='large'
+                />
+            </Center>
             <Box sx={{ paddingBottom: '20px' }} />
             <Box>
                 <Typography color="inherit" align="center">
