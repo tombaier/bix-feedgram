@@ -26,18 +26,12 @@ const Login = () => {
     const classes = useStyles();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, loading, error] = useAuthState(auth);
+    const [user, error] = useAuthState(auth);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (loading) {
-            // maybe trigger a loading screen
-            return;
-        }
-        if (user) {
-            navigate("/feed");
-        }
-    }, [user, loading]);
+        if (user) navigate("/feed");
+    }, [user]);
 
     return(
         <>
