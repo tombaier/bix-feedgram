@@ -17,14 +17,19 @@ const Feed = () => {
     const fetchUserName = async () => {
         try {
             const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-            const docs = await getDocs(q);
-            const data = docs.docs[0].data();
+            const results = await getDocs(q);
+            const data = results.docs[0].data();
             setName(data.name);
         } catch (err) {
             console.error(err);
             alert ("An error occurred while fetching user data");
         }
     };
+
+    useEffect (() => {
+        if (!user) return navigate("/login");
+        fetchUserName();
+    }, [user]);
 
     const [posts, setPosts] = useState([
         {
@@ -38,11 +43,6 @@ const Feed = () => {
             imageUrl: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'
         }
     ]);
-
-    useEffect (() => {
-        if (!user) return navigate("/login");
-        fetchUserName();
-    }, [user]);
 
     return(
         <>
