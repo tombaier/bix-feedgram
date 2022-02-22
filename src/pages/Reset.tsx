@@ -9,20 +9,20 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HeaderBase } from "../components/HeaderBase";
 import { auth, sendPasswordReset } from "../services/firebase";
+import { Message } from "../components/Message";
 
 const useStyles = makeStyles((theme) => ({
   style: {
-      display: 'flex',
-      alignItems: 'center',
-      textAlign:'center', 
-      justifyContent: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    textAlign:'center', 
+    justifyContent: 'center',
   },
   img: {
-      width: 150, 
-      height: 110, 
+    width: 150, 
+    height: 110, 
   }
 }))
-
 
 const Reset = () => {
   const classes = useStyles();
@@ -63,6 +63,7 @@ const Reset = () => {
             >
               Send password reset email
             </Button>
+            { hasError ? <Message /> : null }
           </Box>
           <Box sx={{ paddingBottom: '10px' }} />
           <div>
