@@ -21,29 +21,29 @@ const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
-    try {
         const res = await signInWithPopup(auth, googleProvider);
         const user = res.user;
         const q = query(collection (db, "users"), where("uid", "==", user.uid))
         const results = await getDocs(q);
         if (results.docs.length === 0) {
-            await addDoc (collection(db, "users"), {
-                uid: user.uid,
-                name: user.displayName,
-                authProvider: "google",
-                email: user.email,
-            });
+            return ( 
+                await addDoc (collection(db, "users"), {
+                    uid: user.uid,
+                    name: user.displayName,
+                    authProvider: "google",
+                    email: user.email,
+                }).catch(e => { 
+                    console.error(e)
+                    alert(e.message)
+                })
+            )
         }
-    } catch (err : any) {
-        console.error(err);
-        alert(err.message);
-    }
 };
 
 const logInWithEmailAndPassword = async (email : string, password : string) => {
     return ( await signInWithEmailAndPassword (auth, email, password).catch(e => {
         console.error(e)
-        alert(e.message);
+        alert(e.message)
     }))        
 };
 
