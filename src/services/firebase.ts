@@ -26,49 +26,32 @@ const signInWithGoogle = async () => {
         const q = query(collection (db, "users"), where("uid", "==", user.uid))
         const results = await getDocs(q);
         if (results.docs.length === 0) {
-            return ( 
-                await addDoc (collection(db, "users"), {
-                    uid: user.uid,
-                    name: user.displayName,
-                    authProvider: "google",
-                    email: user.email,
-                }).catch(e => { 
-                    console.error(e)
-                    alert(e.message)
-                })
-            )
+            return await addDoc (collection(db, "users"), {
+                uid: user.uid,
+                name: user.displayName,
+                authProvider: "google",
+                email: user.email,
+            })
         }
 };
 
 const logInWithEmailAndPassword = async (email : string, password : string) => {
-    return ( await signInWithEmailAndPassword (auth, email, password).catch(e => {
-        console.error(e)
-        alert(e.message)
-    }))        
+    return await signInWithEmailAndPassword (auth, email, password)
 };
 
 const signUpWithEmailAndPassword = async (name : string, email : string, password :string) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    return (await addDoc(collection(db, "users"), {
+    return await addDoc(collection(db, "users"), {
         uid: user.uid,
         name, 
         authProvider: "local",
         email,
-    }).catch (e => {
-        console.error(e)
-        alert(e.message)
-    }))
+    })
 };
 
 const sendPasswordReset = async (email : string) => {
-    return (
-        await sendPasswordResetEmail (auth, email).catch(e => {
-            console.error(e)
-            alert(e.message)
-        })
-        //alert ("Password reset link sent!");
-    )
+    return await sendPasswordResetEmail (auth, email)
 };
 
 const logout = () => {
