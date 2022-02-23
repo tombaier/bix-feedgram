@@ -50,7 +50,7 @@ const Feed = () => {
             <Box sx={{ paddingBottom: '20px' }} />
             <Center>
                 <AddCircle
-                    color='secondary'
+                    color='primary'
                     fontSize='large'
                 />
             </Center>
