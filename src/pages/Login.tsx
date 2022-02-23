@@ -8,6 +8,8 @@ import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../services/f
 import { useAuthState } from 'react-firebase-hooks/auth'
 import GoogleButton from 'react-google-button'
 import { Center } from '../components/Center'
+import { Message } from '../components/Message'
+import { ErrorOutline } from '@mui/icons-material'
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -28,10 +30,19 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [user, error] = useAuthState(auth);
     const navigate = useNavigate();
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
         if (user) navigate("/feed");
     }, [user]);
+
+    const loginWithEmail = async () => {
+        setHasError(false)
+        await logInWithEmailAndPassword(email, password).catch(e => {
+          setHasError(true) 
+        })
+      }
+
 
     return(
         <>
@@ -52,11 +63,12 @@ const Login = () => {
                         <Button
                             variant="contained"
                             color="primary"
-                            onClick = {() => logInWithEmailAndPassword(email, password)}
+                            onClick = {loginWithEmail}
                             style = {{width: 300}}
                         >
                             Login
                         </Button>
+                        { hasError ? <Message messageIcon={<ErrorOutline />} messageContent='Entered user data are not correct!' /> : null }
                     </Box>
                     <Box sx={{ paddingBottom: '10px' }} />
                     <div>
