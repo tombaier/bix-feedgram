@@ -30,16 +30,16 @@ const Reset = () => {
   const [email, setEmail] = useState("");
   const [user, error] = useAuthState(auth);
   const navigate = useNavigate();
-  const [hasError, setHasError] = useState(false);
+  const [message, setMessage] = useState(false);
 
   useEffect(() => {
     if (user) navigate("/login");
   }, [user]);
 
   const resetPassword = async () => {
-    setHasError(false)
+    setMessage(true)
     await sendPasswordReset(email).catch(e => {
-      setHasError(true)
+      setMessage(true)
     })
   }
 
@@ -61,11 +61,10 @@ const Reset = () => {
               variant="contained"
               color="primary"
               onClick = {resetPassword}
-              style = {{width: 300}}
             >
               Send password reset email
             </Button>
-            { hasError ? <Message messageIcon={<Check />} messageContent='Password reset email successfully sent!' /> : null }
+            { message ? <Message messageIcon={<Check />} messageContent='Password reset email successfully sent!' /> : null }
           </Box>
           <Box sx={{ paddingBottom: '10px' }} />
           <div>
