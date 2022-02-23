@@ -25,7 +25,6 @@ export const Message = (props: IMessageProps) => (
           padding: 2,
           borderRadius: 5
         }}
-        
       >
         {props.messageIcon}
         {props.messageContent}

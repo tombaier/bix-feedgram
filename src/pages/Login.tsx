@@ -53,7 +53,7 @@ const Login = () => {
                             variant="contained"
                             color="primary"
                             onClick = {() => logInWithEmailAndPassword(email, password)}
-                            style = {{width: 200}}
+                            style = {{width: 300}}
                         >
                             Login
                         </Button>
@@ -68,7 +68,7 @@ const Login = () => {
                     </div>
                     <Box sx={{ paddingBottom: '10px' }} />
                     <Center>
-                        <GoogleButton onClick={signInWithGoogle} style = {{width: 300}}/>
+                        <GoogleButton onClick={signInWithGoogle} style = {{width: 300, padding: 2, borderRadius: 5}}/>
                     </Center>
                 </Typography>
             </Box>
