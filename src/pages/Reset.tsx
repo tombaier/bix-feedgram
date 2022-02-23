@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { HeaderBase } from "../components/HeaderBase";
 import { auth, sendPasswordReset } from "../services/firebase";
 import { Message } from "../components/Message";
+import { Check } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   style: {
@@ -53,17 +54,18 @@ const Reset = () => {
             alt="logo"
             className={classes.img} />
           <Box sx={{ paddingBottom: '20px' }} />
-          <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} style = {{width: 300}}/>
           <Box sx={{ paddingBottom: '20px' }} />
           <Box className='style'>
             <Button
               variant="contained"
-              color="secondary"
+              color="primary"
               onClick = {resetPassword}
+              style = {{width: 300}}
             >
               Send password reset email
             </Button>
-            { hasError ? <Message /> : null }
+            { hasError ? <Message messageIcon={<Check />} messageContent='Password reset email successfully sent!' /> : null }
           </Box>
           <Box sx={{ paddingBottom: '10px' }} />
           <div>
