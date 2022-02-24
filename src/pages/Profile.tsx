@@ -36,8 +36,7 @@ const Profile = () => {
     return(
         <>
             <HeaderMain />
-            <Box sx={{paddingBottom: '12px'}}/>
-            <Center>
+            <Center sx={{marginTop: '12px'}}>
                 <Avatar
                     alt="Placeholder"
                     sx={{ width: 128, height: 128 }} />

@@ -47,14 +47,12 @@ const Feed = () => {
     return(
         <>
             <HeaderMain />
-            <Box sx={{ paddingBottom: '20px' }} />
-            <Center>
+            <Center sx={{ marginTop: '20px', marginBottom: '20px' }}>
                 <AddCircle
                     color='primary'
                     fontSize='large'
                 />
             </Center>
-            <Box sx={{ paddingBottom: '20px' }} />
             <Box>
                 <Typography color="inherit" align="center">
                     {
