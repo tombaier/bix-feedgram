@@ -8,6 +8,8 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, signInWithGoogle, signUpWithEmailAndPassword } from "../services/firebase";
 import { Center } from '../components/Center'
 import GoogleButton from 'react-google-button'
+import { ErrorOutline } from '@mui/icons-material'
+import { Message } from '../components/Message'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,12 +33,13 @@ const Signup = () => {
     const [name, setName] = useState("");
     const [user, error] = useAuthState(auth);
     const navigate = useNavigate();
+    const [hasError, setHasError] = useState(false);
 
     const signup = () => {
-        if (!name ) alert ("Please enter all information ");
-        if (!email ) alert ("Please enter email");
-        if (!password ) alert ("Please enter password");        
-        signUpWithEmailAndPassword (name, email, password);
+        setHasError(false)   
+        signUpWithEmailAndPassword (name, email, password).catch(e => {
+            setHasError(true) 
+        })
     };
 
     useEffect (() => {
@@ -71,6 +74,7 @@ const Signup = () => {
                         >
                             Sign Up
                         </Button>
+                        { hasError ? <Message messageIcon={<ErrorOutline />} messageContent='Please enter all information' /> : null }
                     </Box>
                     <Box sx={{ paddingBottom: '10px' }} />
                     <div>
