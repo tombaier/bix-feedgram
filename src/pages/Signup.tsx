@@ -50,22 +50,23 @@ const Signup = () => {
     return(
         <>
             <HeaderBase />
-            <Box sx={{paddingBottom: '8px'}}/>
-            <Box>
+            <Box sx={{marginTop: '8px'}}>
                 <Typography color="inherit" align="center">
                     <img
                         src={`${process.env.PUBLIC_URL}/assets/logo.png`}
                         alt="logo"
                         className={classes.img} 
                     />
-                    <Box sx={{ paddingBottom: '20px' }} />
+                    <Box sx={{ marginBottom: '20px', marginTop: '20px' }}>
                     <TextField id="outlined-basic" label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} style = {{width: 300}} />
-                    <Box sx={{ paddingBottom: '20px' }} />
-                    <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} style = {{width: 300}} />
-                    <Box sx={{ paddingBottom: '20px' }} />
+                    </Box>
+                    <Box sx={{ marginBottom: '20px' }}>
+                    <TextField id="outlined-basic" label="Email" variant="outlined" type="email" value={email} onChange={(e) => setEmail(e.target.value)} style = {{width: 300}} /> 
+                    </Box>
+                    <Box sx={{ marginBottom: '20px' }}>
                     <TextField id="outlined-basic" label="Password" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} style = {{width: 300}} />
-                    <Box sx={{ paddingBottom: '20px' }} />
-                    <Box className='style'>
+                    </Box>
+                    <Box className='style' sx={{ marginBottom: '10px' }}>
                         <Button
                             variant="contained"
                             color="primary"
@@ -76,15 +77,12 @@ const Signup = () => {
                         </Button>
                         { hasError ? <Message messageIcon={<ErrorOutline />} messageContent='Please enter all information' /> : null }
                     </Box>
-                    <Box sx={{ paddingBottom: '10px' }} />
-                    <div>
+                    <Box sx={{ marginBottom: '10px' }}>
                         You already have an account? <Link to='/Login'>Login!</Link>
-                    </div>
-                    <Box sx={{ paddingBottom: '10px' }} />
+                    </Box>
                     <Center>
                         <GoogleButton onClick={signInWithGoogle} style = {{width: 300, padding: 2, borderRadius: 5}} />
                     </Center>
-                    
                 </Typography>
             </Box>
         </>
