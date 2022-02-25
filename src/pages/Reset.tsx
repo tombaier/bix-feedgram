@@ -52,7 +52,16 @@ const Reset = () => {
             className={classes.img} 
           />
           <Box sx={{marginBottom: '20px', marginTop: '20px'}}>
-            <TextField id="outlined-basic" label="Email" variant="outlined" type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{width: 300}} />
+            <TextField 
+              id="outlined-basic" 
+              label="Email" 
+              variant="outlined" 
+              type="email" value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              style={{width: 300}}
+              required={true}
+              inputProps={{ minLength: 13}}
+            />
           </Box>
           <Box className='style' sx={{marginBottom: '10px'}}>
             <Button

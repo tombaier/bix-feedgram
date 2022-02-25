@@ -57,13 +57,13 @@ const Signup = () => {
                         className={classes.img} 
                     />
                     <Box sx={{ marginBottom: '20px', marginTop: '20px' }}>
-                    <TextField id="outlined-basic" label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} style = {{width: 300}} />
+                    <TextField id="name" label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} style = {{width: 300}} required={true} />
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                    <TextField id="outlined-basic" label="Email" variant="outlined" type="email" value={email} onChange={(e) => setEmail(e.target.value)} style = {{width: 300}} /> 
+                    <TextField id="email" label="Email" variant="outlined" type="email" value={email} onChange={(e) => setEmail(e.target.value)} style = {{width: 300}} required={true} /> 
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                    <TextField id="outlined-basic" label="Password" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} style = {{width: 300}} />
+                    <TextField id="password" label="Password" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} style = {{width: 300}} required={true} />
                     </Box>
                     <Box className='style' sx={{ marginBottom: '10px' }}>
                         <Button
