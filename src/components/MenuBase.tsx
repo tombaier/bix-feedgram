@@ -41,11 +41,7 @@ export const MenuBase = (props: IMenuProps) => {
 		</Menu>
 	)
 
-	return (
-		<Box 
-			sx={{ flexGrow: 1 }}
-		>
-			<Box sx={{ display: { md: 'flex' } }}>
+	return <Box sx={{ display: { md: 'flex' } }}>
 				<IconButton
 				size="large"
 				edge="end"
@@ -57,8 +53,8 @@ export const MenuBase = (props: IMenuProps) => {
 				>
 					{props.menuIcon}
 				</IconButton>
+				{renderMenu}
 			</Box>
-			{renderMenu}
-		</Box>
-	)
+			
+	
 };
