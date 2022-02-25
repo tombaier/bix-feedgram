@@ -9,7 +9,6 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import GoogleButton from 'react-google-button'
 import { Center } from '../components/Center'
 import { Message } from '../components/Message'
-import { ErrorOutline } from '@mui/icons-material'
 
 const useStyles = makeStyles((theme) => ({
     style: {
@@ -28,7 +27,7 @@ const Login = () => {
     const classes = useStyles();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const navigate = useNavigate();
     const [hasError, setHasError] = useState(false);
 
@@ -69,7 +68,7 @@ const Login = () => {
                         >
                             Login
                         </Button>
-                        { hasError ? <Message messageSeverity={false} messageContent='Entered user data are not correct!' /> : null }
+                        { hasError ? <Center> <Message children='Entered user data are not correct!' /> </Center> : null }
                     </Box>
                     <Box sx={{marginBottom: '10px'}}>
                         <Link to='/reset'> Reset Password!</Link>

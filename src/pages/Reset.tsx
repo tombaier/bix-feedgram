@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { HeaderBase } from "../components/HeaderBase";
 import { auth, sendPasswordReset } from "../services/firebase";
 import { Message } from "../components/Message";
-import { Check } from "@mui/icons-material";
+import { Center } from "../components/Center";
 
 const useStyles = makeStyles((theme) => ({
   style: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Reset = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
-  const [user, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [message, setMessage] = useState(false);
 
@@ -38,9 +38,7 @@ const Reset = () => {
 
   const resetPassword = async () => {
     setMessage(true)
-    await sendPasswordReset(email).catch(e => {
-      setMessage(true)
-    })
+    await sendPasswordReset(email)
   }
 
   return (
@@ -65,7 +63,7 @@ const Reset = () => {
             >
               Send password reset email
             </Button>
-            { message ? <Message messageSeverity={true} messageContent='Password reset email successfully sent!' /> : null }
+            { message ? <Center> <Message severity='success' children='Password reset email successfully sent!' /> </Center> : null }
           </Box>
           <Box>
             You don't have an account yet? <Link to='/signup'> Sign up!</Link>

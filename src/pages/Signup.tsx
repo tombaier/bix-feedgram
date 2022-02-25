@@ -8,7 +8,6 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, signInWithGoogle, signUpWithEmailAndPassword } from "../services/firebase";
 import { Center } from '../components/Center'
 import GoogleButton from 'react-google-button'
-import { ErrorOutline } from '@mui/icons-material'
 import { Message } from '../components/Message'
 
 
@@ -31,7 +30,7 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
-    const [user, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const navigate = useNavigate();
     const [hasError, setHasError] = useState(false);
 
@@ -75,7 +74,7 @@ const Signup = () => {
                         >
                             Sign Up
                         </Button>
-                        { hasError ? <Message messageSeverity={false} messageContent='Please enter all information!' /> : null }
+                        { hasError ? <Center> <Message children='Please enter all information!' /> </Center> : null }
                     </Box>
                     <Box sx={{ marginBottom: '10px' }}>
                         You already have an account? <Link to='/Login'>Login!</Link>

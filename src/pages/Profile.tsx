@@ -13,7 +13,7 @@ import { query, collection, getDocs, where } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
-    const [user, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const fetchUserName = async () => {
