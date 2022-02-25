@@ -17,16 +17,12 @@ const Profile = () => {
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const fetchUserName = async () => {
-        try {
-            const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-            const results = await getDocs(q);
-            const data = results.docs[0].data();
-            setName(data.name);
-        } catch (err) {
-            console.error(err);
-            alert ("An error occurred while fetching user data");
-        }
-    };
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const results = await getDocs(q);
+        const data = results.docs[0].data();
+        setName(data.name);   
+    }
+
 
     useEffect (() => {
         if (!user) return navigate("/login");
@@ -67,10 +63,8 @@ const Profile = () => {
                 </Box>
 
                 <Link to='/login'>
-                    <IconButton>
-                        <Logout
-                            sx={{ width: 40, height: 40 }} 
-                            onClick={logout} />
+                    <IconButton sx={{ width: 40, height: 40 }} onClick={logout} >
+                        <Logout/>
                     </IconButton>
                 </Link>
 
