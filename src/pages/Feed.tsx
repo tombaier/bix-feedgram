@@ -11,7 +11,7 @@ import { AddCircle } from '@mui/icons-material'
 import { Center } from '../components/Center'
 
 const Feed = () => {
-    const [user, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const fetchUserName = async () => {
