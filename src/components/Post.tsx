@@ -33,7 +33,7 @@ export const Post = (props: IPostProps) => {
                         />
 
                         <CardMedia>
-                            <img className={classes.post_img} src={props.imageUrl} />
+                            <img alt="postImg" className={classes.post_img} src={props.imageUrl} />
                         </CardMedia>
 
                         <CardActions disableSpacing sx={{paddingBottom:'1px'}}>
