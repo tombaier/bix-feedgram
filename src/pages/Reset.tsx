@@ -65,7 +65,7 @@ const Reset = () => {
             >
               Send password reset email
             </Button>
-            { message ? <Message messageIcon={<Check />} messageContent='Password reset email successfully sent!' /> : null }
+            { message ? <Message messageSeverity={true} messageContent='Password reset email successfully sent!' /> : null }
           </Box>
           <Box>
             You don't have an account yet? <Link to='/signup'> Sign up!</Link>

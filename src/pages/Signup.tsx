@@ -75,7 +75,7 @@ const Signup = () => {
                         >
                             Sign Up
                         </Button>
-                        { hasError ? <Message messageIcon={<ErrorOutline />} messageContent='Please enter all information' /> : null }
+                        { hasError ? <Message messageSeverity={false} messageContent='Please enter all information!' /> : null }
                     </Box>
                     <Box sx={{ marginBottom: '10px' }}>
                         You already have an account? <Link to='/Login'>Login!</Link>

@@ -1,9 +1,9 @@
+import Alert, { AlertProps } from "@mui/material/Alert"
 import Box from "@mui/material/Box"
-import { IconProps } from "@mui/material/Icon"
 import { Center } from "./Center"
 
 export interface IMessageProps {
-	messageIcon: IconProps,
+	messageSeverity: boolean,
 	messageContent: string
 };
 
@@ -17,15 +17,16 @@ export const Message = (props: IMessageProps) => (
         justifyContent: 'center',
         textAlign: 'center',
         alignItems: 'center',
-        background: '#EBEBEB',
         width: 300,
-        height: 80,
-        padding: 2,
-        borderRadius: 5
       }}
     >
-      {props.messageIcon}
-      {props.messageContent} 
+      <Alert
+
+        severity= {props.messageSeverity ? 'success' : 'error'}
+      >
+        {props.messageContent} 
+      </Alert>
+      
     </Box>
   </Center>
 ) 

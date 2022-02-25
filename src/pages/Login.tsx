@@ -69,7 +69,7 @@ const Login = () => {
                         >
                             Login
                         </Button>
-                        { hasError ? <Message messageIcon={<ErrorOutline />} messageContent='Entered user data are not correct!' /> : null }
+                        { hasError ? <Message messageSeverity={false} messageContent='Entered user data are not correct!' /> : null }
                     </Box>
                     <Box sx={{marginBottom: '10px'}}>
                         <Link to='/reset'> Reset Password!</Link>
