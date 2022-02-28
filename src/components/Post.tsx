@@ -52,8 +52,8 @@ export const Post = (props: IPostProps) => {
                             </Typography>
                         </CardContent>
                     </Card>
-                </ Grid>
-            </ Grid>
-        </ Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     )
 }

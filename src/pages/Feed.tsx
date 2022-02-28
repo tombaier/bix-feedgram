@@ -31,6 +31,10 @@ const Feed = () => {
         fetchUserName();
     }, [user]);
 
+    const createNewPost = () => {
+        navigate("/addPost")
+    }
+
     const [posts, setPosts] = useState([
         {
             username: 'TomBaier27',
@@ -51,6 +55,7 @@ const Feed = () => {
                 <AddCircle
                     color='primary'
                     fontSize='large'
+                    onClick = {createNewPost}
                 />
             </Center>
             <Box>

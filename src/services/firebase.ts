@@ -3,6 +3,7 @@ import 'firebase/auth';
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import 'firebase/firestore'
 import { collection, query, getDocs, getFirestore, where, addDoc } from "firebase/firestore";
+import { createContext } from "react";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -57,5 +58,9 @@ const sendPasswordReset = async (email : string) => {
 const logout = () => {
     signOut(auth);
 };
+
+
+
+const FirebaseContext = createContext(null);
 
 export {auth, db, signInWithGoogle, logInWithEmailAndPassword, signUpWithEmailAndPassword, sendPasswordReset, logout };

@@ -3,6 +3,7 @@ import Signup from './pages/Signup'
 import Feed from './pages/Feed'
 import Profile from './pages/Profile'
 import Reset from './pages/Reset'
+import AddPost from './pages/AddPost'
 import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route path='/feed' element={<Feed />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/reset' element={<Reset />} />
+          <Route path='/addPost' element={<AddPost />} />
         </Routes>
       </div>
   )    
