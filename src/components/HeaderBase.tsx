@@ -9,7 +9,7 @@ export const HeaderBase: FC<BoxProps> = ({ children, ...props }) => {
         sx={{ flexGrow: 1 }}
 	    {...props}
 	>
-        <AppBar position="static" color="secondary">
+        <AppBar position="static" color="primary">
             <Toolbar>
                 {children}
             </Toolbar>
