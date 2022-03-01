@@ -41,7 +41,7 @@ const AddPost = () => {
         await addDoc(postsCollectionRef, {
           imageUrl,
           caption,
-          username: { name: name, id: user?.uid },
+          username: { name: name, uid: user?.uid },
         });
         navigate("/feed");
       };
