@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
-import { query, collection, getDocs, where } from 'firebase/firestore'
+import { query, collection, getDocs, where, addDoc } from 'firebase/firestore'
 import Typography from '@mui/material/Typography'
 import Box  from '@mui/material/Box'
 import { HeaderMain } from '../components/HeaderMain'
 import { auth, db } from '../services/firebase'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-import { AddAPhoto } from '@mui/icons-material'
 import CardContent from '@mui/material/CardContent'
 import { Button, CardMedia, TextField } from '@mui/material'
 
@@ -33,13 +32,20 @@ const AddPost = () => {
         fetchUserName();
     }, [user]);
 
-    const addNewPost = () => {
-        return navigate("/feed")
-    }
+    const [imageUrl, setImageUrl] = useState("");
+    const [caption, setCaption] = useState("");
 
-    const openGallery = () => {
-        return 
-    }
+    const postsCollectionRef = collection(db, "posts");
+
+    const createPost = async () => {
+        await addDoc(postsCollectionRef, {
+          imageUrl,
+          caption,
+          username: { name: name, id: user?.uid },
+        });
+        navigate("/feed");
+      };
+
 
     return(
         <>
@@ -48,7 +54,7 @@ const AddPost = () => {
                 <Typography color="inherit" align="center">
                     <Grid container>
                         <Grid item container xs={12} justifyContent='center'>
-                            <Grid item xs={10} sx={{paddingBottom:'20px'}}> 
+                            <Grid item xs={10} sx={{marginBottom:'20px'}}> 
                                 <Card>
                                     <CardContent sx={{paddingBlockStart:'1px'}}>
                                         <Typography color='textSecondary' component='div'>
@@ -56,17 +62,33 @@ const AddPost = () => {
                                         </Typography>
                                     </CardContent>
                                     <CardMedia>
-                                        <AddAPhoto sx={{width: 80, height: 80}} onClick = {openGallery} />
+                                        <TextField 
+                                            id="imageUrl"  
+                                            variant="outlined"
+                                            label="Image URL" 
+                                            style = {{width: 250}} 
+                                            onChange={(event) => {
+                                                setImageUrl(event.target.value);
+                                            }} 
+                                        />    
                                     </CardMedia>
-                                    <Box sx={{marginBottom: '20px'}}>
-                                        <TextField id="postCaption"  variant="outlined" label="Caption" style = {{width: 250}}/>
+                                    <Box sx={{marginBottom: '20px', marginTop: '20px'}}>
+                                        <TextField 
+                                            id="postCaption"  
+                                            variant="outlined" 
+                                            label="Caption" 
+                                            style = {{width: 250}}
+                                            onChange={(event) => {
+                                                setCaption(event.target.value);
+                                            }} 
+                                        />
                                     </Box>
                                     <Box sx={{marginBottom: '20px'}}>
                                         <Button
                                             variant="contained"
                                             color="primary"    
-                                            onClick = {addNewPost}
                                             style = {{width: 250}}
+                                            onClick={createPost}
                                         >
                                             Upload Post
                                         </Button>
