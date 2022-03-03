@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
-import { query, collection, getDocs, where } from 'firebase/firestore'
+import { query, collection, getDocs, where} from '@firebase/firestore'
 import Typography from '@mui/material/Typography'
 import Box  from '@mui/material/Box'
-import { Post } from '../components/Post'
+import { Post } from '../features/posts/Post'
 import { HeaderMain } from '../components/HeaderMain'
 import { auth, db } from '../services/firebase'
 import { AddCircle } from '@mui/icons-material'
@@ -35,18 +35,38 @@ const Feed = () => {
         navigate("/addPost")
     }
 
-    const [posts, setPosts] = useState([
-        {
-            username: 'TomBaier27',
-            caption: 'Look at these amazing cats *_*',
-            imageUrl: 'https://www.rover.com/blog/wp-content/uploads/2019/12/two-gray-kittens-pixabay.jpg'
-        },
-        {
-            username: 'NiklasW471',
-            caption: 'Look at this beautiful dog <3',
-            imageUrl: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'
+    const [posts, setPosts] = useState<any[]>([]);
+    
+
+    
+    useEffect(() => {
+        const getPosts = async () => {
+            const postsData = await getDocs(collection(db, "posts")).catch((error : any) => {
+                console.log(error)
+            })
+            if(postsData) {
+                const data = postsData.docs.map((d) => d.data())
+                setPosts(data)
+                console.log(data)
+                
+            }
+           
         }
-    ]);
+        getPosts();
+    }, []);
+    
+
+    /*
+    const getPosts = async () => {
+        const results = await getDocs(collection(db, "posts"));
+        const post = results.docs[0].data();
+        setUsername(post.name);
+        setCaption(post.caption);
+        setImageUrl(post.imageUrl);
+        getPosts();
+    };
+    */
+    
 
     return(
         <>
@@ -59,13 +79,16 @@ const Feed = () => {
                 />
             </Center>
             <Box>
-                <Typography color="inherit" align="center">
-                    {
-                        posts.map(post => (
-                            <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+               
+                   {
+                        posts.map(({username, caption, imageUrl, date}) => (
+                            <div key={username.uid+date.seconds}>
+                                {username.name}
+                            
+                            </div>
                         ))
                     }
-                </Typography>
+                
             </Box>
         </>
     )
