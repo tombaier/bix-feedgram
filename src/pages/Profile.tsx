@@ -6,28 +6,11 @@ import { Logout } from '@mui/icons-material'
 import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom'
 import { HeaderMain } from '../components/HeaderMain'
-import { auth, db, logout } from '../services/firebase'
-import { useEffect, useState } from 'react'
+import { auth, logout } from '../services/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { query, collection, getDocs, where } from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
     const [user] = useAuthState(auth);
-    const [name, setName] = useState("");
-    const navigate = useNavigate();
-    const fetchUserName = async () => {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const results = await getDocs(q);
-        const data = results.docs[0].data();
-        setName(data.name);   
-    }
-
-
-    useEffect (() => {
-        if (!user) return navigate("/login");
-        fetchUserName();
-    }, [user]);
     
     return(
         <>
@@ -35,12 +18,14 @@ const Profile = () => {
             <Center sx={{marginTop: '12px'}}>
                 <Avatar
                     alt="Placeholder"
-                    sx={{ width: 128, height: 128 }} />
+                    sx={{ width: 128, height: 128, marginBottom: '10px'}} 
+                />
                 <Typography
                     variant='h6'
                     textAlign='center'
+                    color='textSecondary'
                 >
-                    {name}
+                    {user?.displayName}
                     <br />
                     {user?.email}
                 </Typography>
@@ -48,13 +33,13 @@ const Profile = () => {
                 <Box p={{ xs: 2, sm: 3, md: 5 }}>
                     <Paper>
                         <Box p={5}>
-                                <p>
+                                <Typography color='textSecondary' component='div'>
                                     This application is a demo version.
                                     <br />
                                     If you find any errors in the app, please feel free to contact me:
                                     <br />
                                     <a href="mailto:tombaier27@icloud.com">Tom Baier</a>
-                                </p>
+                                </Typography>
                         </Box>
                     </Paper>
                 </Box>

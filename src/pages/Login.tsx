@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@mui/styles'
 import { HeaderBase } from '../components/HeaderBase'
@@ -62,10 +62,14 @@ const Login = () => {
                         { hasError ? <Center> <Message children='Entered user data are not correct!' /> </Center> : null }
                     </Box>
                     <Box sx={{marginBottom: '10px'}}>
-                        <Link to='/reset'> Reset Password!</Link>
+                        <Typography textAlign='center' color='textSecondary'>
+                            <Link to='/reset'> Reset Password!</Link>
+                        </Typography>
                     </Box>
                     <Box sx={{marginBottom: '10px'}}>
-                        You don't have an account yet? <Link to='/signup'> Sign up!</Link>
+                        <Typography textAlign='center' color='textSecondary' >
+                            You don't have an account yet? <Link to='/signup'> Sign up!</Link>
+                        </Typography>
                     </Box>
                     <Center>
                         <GoogleButton onClick={signInWithGoogle} style = {{width: 300, padding: 2, borderRadius: 5}}/>

@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
-import Typography from '@mui/material/Typography'
-import { Box, Button, TextField } from '@mui/material'
+import { useState } from 'react'
+import { Box, Button, TextField, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
 import { HeaderBase } from '../components/HeaderBase'
-import { auth, signInWithGoogle, signUpWithEmailAndPassword } from "../services/firebase";
+import { signInWithGoogle, signUpWithEmailAndPassword } from "../services/firebase";
 import { Center } from '../components/Center'
 import GoogleButton from 'react-google-button'
 import { Message } from '../components/Message'
@@ -50,13 +49,13 @@ const Signup = () => {
                         className={classes.img} 
                     />
                     <Box sx={{ marginBottom: '20px', marginTop: '20px' }}>
-                    <TextField id="name" label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} style = {{width: 300}} required={true} />
+                        <TextField id="name" label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} style = {{width: 300}} required={true} />
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                    <TextField id="email" label="Email" variant="outlined" type="email" value={email} onChange={(e) => setEmail(e.target.value)} style = {{width: 300}} required={true} /> 
+                        <TextField id="email" label="Email" variant="outlined" type="email" value={email} onChange={(e) => setEmail(e.target.value)} style = {{width: 300}} required={true} /> 
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                    <TextField id="password" label="Password" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} style = {{width: 300}} required={true} />
+                        <TextField id="password" label="Password" variant="outlined" type="password" value={password} onChange={(e) => setPassword(e.target.value)} style = {{width: 300}} required={true} />
                     </Box>
                     <Box className='style' sx={{ marginBottom: '10px' }}>
                         <Button
@@ -70,7 +69,9 @@ const Signup = () => {
                         { hasError ? <Center> <Message children='Please enter all information!' /> </Center> : null }
                     </Box>
                     <Box sx={{ marginBottom: '10px' }}>
-                        You already have an account? <Link to='/Login'>Login!</Link>
+                        <Typography textAlign='center' color='textSecondary'>
+                            You already have an account? <Link to='/Login'>Login!</Link>
+                        </Typography>
                     </Box>
                     <Center>
                         <GoogleButton onClick={signInWithGoogle} style = {{width: 300, padding: 2, borderRadius: 5}} />

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
-import { collection, getDocs, where, addDoc, Timestamp } from 'firebase/firestore'
+import { collection, addDoc, Timestamp } from 'firebase/firestore'
 import Typography from '@mui/material/Typography'
 import Box  from '@mui/material/Box'
 import { HeaderMain } from '../../components/HeaderMain'
@@ -39,7 +39,7 @@ const AddPost = () => {
                 <Center>
                     <Grid container>
                         <Grid item container xs={12} justifyContent='center'>
-                            <Grid item xs={10} sx={{marginBottom:'20px'}}> 
+                            <Grid item xs={10} md={4} sx={{marginBottom:'20px'}}> 
                                 <Card>
                                     <CardContent sx={{paddingBlockStart:'1px'}}>
                                         <Typography color='textSecondary' component='div'>

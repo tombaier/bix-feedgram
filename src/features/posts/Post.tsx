@@ -21,7 +21,7 @@ export const Post = (props: IPostProps) => {
     return (
         <Grid container>
             <Grid item container xs={12} justifyContent='center'>
-                <Grid item xs={10} md={5} sx={{paddingBottom:'20px'}}> 
+                <Grid item xs={10} md={4} sx={{paddingBottom:'20px'}}> 
                     <Card>
                         <CardHeader 
                             avatar = {<Avatar />}
