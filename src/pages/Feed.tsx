@@ -11,25 +11,7 @@ import { AddCircle } from '@mui/icons-material'
 import { Center } from '../components/Center'
 
 const Feed = () => {
-    const [user] = useAuthState(auth);
-    const [name, setName] = useState("");
     const navigate = useNavigate();
-    const fetchUserName = async () => {
-        try {
-            const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-            const results = await getDocs(q);
-            const data = results.docs[0].data();
-            setName(data.name);
-        } catch (err) {
-            console.error(err);
-            alert ("An error occurred while fetching user data");
-        }
-    };
-
-    useEffect (() => {
-        if (!user) return navigate("/login");
-        fetchUserName();
-    }, [user]);
 
     const createNewPost = () => {
         navigate("/addPost")
@@ -56,18 +38,6 @@ const Feed = () => {
     }, []);
     
 
-    /*
-    const getPosts = async () => {
-        const results = await getDocs(collection(db, "posts"));
-        const post = results.docs[0].data();
-        setUsername(post.name);
-        setCaption(post.caption);
-        setImageUrl(post.imageUrl);
-        getPosts();
-    };
-    */
-    
-
     return(
         <>
             <HeaderMain />
@@ -82,10 +52,7 @@ const Feed = () => {
                
                    {
                         posts.map(({username, caption, imageUrl, date}) => (
-                            <div key={username.uid+date.seconds}>
-                                {username.name}
-                            
-                            </div>
+                            <Post key={date.seconds} username={username.name} caption={caption} imageUrl={imageUrl} date={date.seconds} />
                         ))
                     }
                 

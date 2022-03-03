@@ -1,7 +1,6 @@
 import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid } from '@mui/material'
 import { Favorite, Comment } from '@mui/icons-material' 
 import { makeStyles } from '@mui/styles'
-import { Timestamp } from 'firebase/firestore'
 
 interface IPostProps {
 	username: any;
@@ -22,7 +21,7 @@ export const Post = (props: IPostProps) => {
     return (
         <Grid container>
             <Grid item container xs={12} justifyContent='center'>
-                <Grid item xs={10} sx={{paddingBottom:'20px'}}> 
+                <Grid item xs={10} md={5} sx={{paddingBottom:'20px'}}> 
                     <Card>
                         <CardHeader 
                             avatar = {<Avatar />}
