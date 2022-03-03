@@ -50,7 +50,7 @@ const Signup = () => {
         <>
             <HeaderBase />
             <Box sx={{marginTop: '8px'}}>
-                <Typography color="inherit" align="center">
+                <Center>
                     <img
                         src={`${process.env.PUBLIC_URL}/assets/logo.png`}
                         alt="logo"
@@ -82,7 +82,7 @@ const Signup = () => {
                     <Center>
                         <GoogleButton onClick={signInWithGoogle} style = {{width: 300, padding: 2, borderRadius: 5}} />
                     </Center>
-                </Typography>
+                </Center>
             </Box>
         </>
     )

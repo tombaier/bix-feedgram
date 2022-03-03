@@ -40,16 +40,14 @@ const Profile = () => {
                     variant='h6'
                     textAlign='center'
                 >
-                    <p> {name} </p>
-                    <p> {user?.email} </p>
+                    {name}
+                    <br />
+                    {user?.email}
                 </Typography>
 
                 <Box p={{ xs: 2, sm: 3, md: 5 }}>
                     <Paper>
                         <Box p={5}>
-                            <Typography
-                                textAlign='center'
-                            >
                                 <p>
                                     This application is a demo version.
                                     <br />
@@ -57,7 +55,6 @@ const Profile = () => {
                                     <br />
                                     <a href="mailto:tombaier27@icloud.com">Tom Baier</a>
                                 </p>
-                            </Typography>
                         </Box>
                     </Paper>
                 </Box>

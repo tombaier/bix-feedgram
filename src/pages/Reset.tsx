@@ -45,7 +45,7 @@ const Reset = () => {
     <>
       <HeaderBase />
       <Box sx={{marginTop: '8px'}}>
-        <Typography color="inherit" align="center">
+        <Center>
           <img
             src={`${process.env.PUBLIC_URL}/assets/logo.png`}
             alt="logo"
@@ -77,7 +77,7 @@ const Reset = () => {
           <Box>
             You don't have an account yet? <Link to='/signup'> Sign up!</Link>
           </Box>
-        </Typography>
+        </Center>
       </Box>
     </>
         
