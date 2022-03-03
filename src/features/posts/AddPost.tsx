@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
-import { query, collection, getDocs, where, addDoc } from 'firebase/firestore'
+import { query, collection, getDocs, where, addDoc, Timestamp } from 'firebase/firestore'
 import Typography from '@mui/material/Typography'
 import Box  from '@mui/material/Box'
-import { HeaderMain } from '../components/HeaderMain'
-import { auth, db } from '../services/firebase'
+import { HeaderMain } from '../../components/HeaderMain'
+import { auth, db } from '../../services/firebase'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import CardContent from '@mui/material/CardContent'
 import { Button, CardMedia, TextField } from '@mui/material'
+import { Center } from '../../components/Center'
 
 const AddPost = () => {
     const [user] = useAuthState(auth);
@@ -42,6 +43,7 @@ const AddPost = () => {
           imageUrl,
           caption,
           username: { name: name, uid: user?.uid },
+          date: Timestamp.now(),
         });
         navigate("/feed");
       };
@@ -51,14 +53,14 @@ const AddPost = () => {
         <>
             <HeaderMain />
             <Box marginTop='20px'>
-                <Typography color="inherit" align="center">
+                <Center>
                     <Grid container>
                         <Grid item container xs={12} justifyContent='center'>
                             <Grid item xs={10} sx={{marginBottom:'20px'}}> 
                                 <Card>
                                     <CardContent sx={{paddingBlockStart:'1px'}}>
                                         <Typography color='textSecondary' component='div'>
-                                            <h4>Select a picture to share with your community</h4>
+                                            Select a picture to share with your community
                                         </Typography>
                                     </CardContent>
                                     <CardMedia>
@@ -97,7 +99,7 @@ const AddPost = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </Typography>
+                </Center>
             </Box>
         </>
     )

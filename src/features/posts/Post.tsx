@@ -1,11 +1,13 @@
 import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid } from '@mui/material'
 import { Favorite, Comment } from '@mui/icons-material' 
 import { makeStyles } from '@mui/styles'
+import { Timestamp } from 'firebase/firestore'
 
-export interface IPostProps {
-	username: string,
-	caption: string,
-    imageUrl: string,
+interface IPostProps {
+	username: any;
+	caption: string;
+    imageUrl: string;
+    date: any;
 };
 
 const useStyles = makeStyles({
@@ -13,10 +15,6 @@ const useStyles = makeStyles({
         width: '100%',
         objectFit: 'contain',
     },
-    post_text:{
-        fontWeight: 'normal',
-        textAlign: 'left',
-    }
 })
 
 export const Post = (props: IPostProps) => {
@@ -29,7 +27,8 @@ export const Post = (props: IPostProps) => {
                         <CardHeader 
                             avatar = {<Avatar />}
                             title = {props.username}
-                            subheader = {new Date().toDateString()}
+                            subheader = {props.date}
+                            // subheader={new Date().toDateString()}
                         />
 
                         <CardMedia>
@@ -48,7 +47,7 @@ export const Post = (props: IPostProps) => {
 
                         <CardContent sx={{paddingBlockStart:'1px'}}>
                             <Typography color='textSecondary' component='div'>
-                                <h4 className={classes.post_text}> <strong>{props.username}</strong> {props.caption} </h4>
+                                <strong>{props.username}</strong> {props.caption} 
                             </Typography>
                         </CardContent>
                     </Card>

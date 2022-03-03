@@ -3,7 +3,7 @@ import Signup from './pages/Signup'
 import Feed from './pages/Feed'
 import Profile from './pages/Profile'
 import Reset from './pages/Reset'
-import AddPost from './pages/AddPost'
+import AddPost from './features/posts/AddPost'
 import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
