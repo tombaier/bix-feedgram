@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { Box, Button, TextField } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { HeaderBase } from '../components/HeaderBase'
-import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, signInWithGoogle, signUpWithEmailAndPassword } from "../services/firebase";
 import { Center } from '../components/Center'
 import GoogleButton from 'react-google-button'
@@ -30,8 +29,6 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
-    const [user] = useAuthState(auth);
-    const navigate = useNavigate();
     const [hasError, setHasError] = useState(false);
 
     const signup = () => {
@@ -40,10 +37,6 @@ const Signup = () => {
             setHasError(true) 
         })
     };
-
-    useEffect (() => {
-        if (user) navigate("/feed");
-    }, [user]);
     
 
     return(

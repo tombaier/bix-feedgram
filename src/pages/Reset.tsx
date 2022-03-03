@@ -28,13 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Reset = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
-  const [user] = useAuthState(auth);
-  const navigate = useNavigate();
   const [message, setMessage] = useState(false);
-
-  useEffect(() => {
-    if (user) navigate("/login");
-  }, [user]);
 
   const resetPassword = async () => {
     setMessage(true)

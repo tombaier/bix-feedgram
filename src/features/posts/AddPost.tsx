@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
-import { query, collection, getDocs, where, addDoc, Timestamp } from 'firebase/firestore'
+import { collection, getDocs, where, addDoc, Timestamp } from 'firebase/firestore'
 import Typography from '@mui/material/Typography'
 import Box  from '@mui/material/Box'
 import { HeaderMain } from '../../components/HeaderMain'
@@ -14,24 +14,7 @@ import { Center } from '../../components/Center'
 
 const AddPost = () => {
     const [user] = useAuthState(auth);
-    const [name, setName] = useState("");
     const navigate = useNavigate();
-    const fetchUserName = async () => {
-        try {
-            const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-            const results = await getDocs(q);
-            const data = results.docs[0].data();
-            setName(data.name);
-        } catch (err) {
-            console.error(err);
-            alert ("An error occurred while fetching user data");
-        }
-    };
-
-    useEffect (() => {
-        if (!user) return navigate("/login");
-        fetchUserName();
-    }, [user]);
 
     const [imageUrl, setImageUrl] = useState("");
     const [caption, setCaption] = useState("");
@@ -42,7 +25,7 @@ const AddPost = () => {
         await addDoc(postsCollectionRef, {
           imageUrl,
           caption,
-          username: { name: name, uid: user?.uid },
+          username: { name:user?.displayName, uid: user?.uid },
           date: Timestamp.now(),
         });
         navigate("/feed");
