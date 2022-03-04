@@ -5,8 +5,9 @@ import Profile from './pages/Profile'
 import Reset from './pages/Reset'
 import AddPost from './features/posts/AddPost'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { db, auth } from './services/firebase'
+import { auth } from './services/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { Loading } from '../src/components/Loading'
 
 const isProtectedRoute = () => {
     return window.location.pathname.indexOf("login")===-1 &&
@@ -17,7 +18,7 @@ const isProtectedRoute = () => {
 export const Router = () => {
     const navigate = useNavigate();
     const [user, loading, error] = useAuthState(auth);
-    if(loading) {return <div> Loading ..</div>}
+    if(loading) {return <Loading /> }
     if(!user && isProtectedRoute()) {navigate("/login")} 
     if(user && !isProtectedRoute()) {navigate("/feed")} 
     console.log(user)
