@@ -35,18 +35,18 @@ const AddPost = () => {
     return(
         <>
             <HeaderMain />
-            <Box marginTop='20px'>
-                <Center>
-                    <Grid container>
-                        <Grid item container xs={12} justifyContent='center'>
-                            <Grid item xs={10} md={4} sx={{marginBottom:'20px'}}> 
-                                <Card>
-                                    <CardContent sx={{paddingBlockStart:'1px'}}>
-                                        <Typography color='textSecondary' component='div'>
-                                            Select a picture to share with your community
-                                        </Typography>
-                                    </CardContent>
-                                    <CardMedia>
+            <Center marginTop='20px'>
+                <Grid container>
+                    <Grid item container xs={12} justifyContent='center'>
+                        <Grid item xs={10} md={4} sx={{marginBottom:'20px'}}> 
+                            <Card>
+                                <CardContent sx={{paddingBlockStart:'1px'}}>
+                                    <Typography color='textSecondary' component='div' textAlign='center' >
+                                        Select a picture to share with your community
+                                    </Typography>
+                                </CardContent>
+                                <CardMedia>
+                                    <Center sx={{marginBottom: '20px', marginTop: '20px'}}>
                                         <TextField 
                                             id="imageUrl"  
                                             variant="outlined"
@@ -56,8 +56,8 @@ const AddPost = () => {
                                                 setImageUrl(event.target.value);
                                             }} 
                                         />    
-                                    </CardMedia>
-                                    <Box sx={{marginBottom: '20px', marginTop: '20px'}}>
+                                    </Center>
+                                    <Center sx={{marginBottom: '20px', marginTop: '20px'}}>
                                         <TextField 
                                             id="postCaption"  
                                             variant="outlined" 
@@ -67,23 +67,23 @@ const AddPost = () => {
                                                 setCaption(event.target.value);
                                             }} 
                                         />
-                                    </Box>
-                                    <Box sx={{marginBottom: '20px'}}>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"    
-                                            style = {{width: 250}}
-                                            onClick={createPost}
-                                        >
-                                            Upload Post
-                                        </Button>
-                                    </Box>
-                                </Card>
-                            </Grid>
+                                    </Center>
+                                </CardMedia>
+                                <Center sx={{marginBottom: '20px'}}>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"    
+                                        style = {{width: 250}}
+                                        onClick={createPost}
+                                    >
+                                        Upload Post
+                                    </Button>
+                                </Center>
+                            </Card>
                         </Grid>
                     </Grid>
-                </Center>
-            </Box>
+                </Grid>
+            </Center>
         </>
     )
 }

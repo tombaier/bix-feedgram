@@ -66,7 +66,7 @@ const Signup = () => {
                         >
                             Sign Up
                         </Button>
-                        { hasError ? <Center> <Message children='Please enter all information!' /> </Center> : null }
+                        { hasError ? <Center> <Message children='Registration credentials are invalid!' /> </Center> : null }
                     </Box>
                     <Box sx={{ marginBottom: '10px' }}>
                         <Typography textAlign='center' color='textSecondary'>

@@ -1,5 +1,6 @@
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid } from '@mui/material'
-import { Favorite, Comment } from '@mui/icons-material' 
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid, FormControlLabel , Checkbox } from '@mui/material'
+import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline' 
 import { makeStyles } from '@mui/styles'
 
 interface IPostProps {
@@ -18,6 +19,7 @@ const useStyles = makeStyles({
 
 export const Post = (props: IPostProps) => {
     const classes = useStyles();
+
     return (
         <Grid container>
             <Grid item container xs={12} justifyContent='center'>
@@ -27,7 +29,6 @@ export const Post = (props: IPostProps) => {
                             avatar = {<Avatar />}
                             title = {props.username}
                             subheader = {props.date}
-                            // subheader={new Date().toDateString()}
                         />
 
                         <CardMedia>
@@ -35,12 +36,19 @@ export const Post = (props: IPostProps) => {
                         </CardMedia>
 
                         <CardActions disableSpacing sx={{paddingBottom:'1px'}}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox 
+                                        icon={<FavoriteBorder />} 
+                                        checkedIcon={<Favorite color='error'/>}
+                                        name="likeButton"
+                                    />
+                                }
+                                label=""
+                            />
+
                             <IconButton>
-                                <Favorite />
-                            </IconButton>
-                        
-                            <IconButton>
-                                    <Comment />
+                                    <ChatBubbleOutlineIcon />
                             </IconButton>
                         </CardActions>
 
