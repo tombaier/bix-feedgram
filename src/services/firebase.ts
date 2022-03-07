@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import 'firebase/auth';
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import 'firebase/firestore'
 import { collection, query, getDocs, getFirestore, where, addDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -58,4 +57,4 @@ const logout = () => {
     signOut(auth);
 };
 
-export {auth, db, signInWithGoogle, logInWithEmailAndPassword, signUpWithEmailAndPassword, sendPasswordReset, logout };
+export { initializeApp, auth, db, signInWithGoogle, logInWithEmailAndPassword, signUpWithEmailAndPassword, sendPasswordReset, logout };

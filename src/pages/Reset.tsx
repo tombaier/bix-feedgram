@@ -1,16 +1,14 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HeaderBase } from "../components/HeaderBase";
-import { auth, sendPasswordReset } from "../services/firebase";
+import { sendPasswordReset } from "../services/firebase";
 import { Message } from "../components/Message";
 import { Center } from "../components/Center";
+import Typography from "@mui/material/Typography";
 
 const useStyles = makeStyles((theme) => ({
   style: {
@@ -28,13 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const Reset = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
-  const [user] = useAuthState(auth);
-  const navigate = useNavigate();
   const [message, setMessage] = useState(false);
-
-  useEffect(() => {
-    if (user) navigate("/login");
-  }, [user]);
 
   const resetPassword = async () => {
     setMessage(true)
@@ -45,7 +37,7 @@ const Reset = () => {
     <>
       <HeaderBase />
       <Box sx={{marginTop: '8px'}}>
-        <Typography color="inherit" align="center">
+        <Center>
           <img
             src={`${process.env.PUBLIC_URL}/assets/logo.png`}
             alt="logo"
@@ -75,9 +67,11 @@ const Reset = () => {
             { message ? <Center> <Message severity='success' children='Password reset email successfully sent!' /> </Center> : null }
           </Box>
           <Box>
-            You don't have an account yet? <Link to='/signup'> Sign up!</Link>
+            <Typography textAlign='center' color='textSecondary'>
+              You don't have an account yet? <Link to='/signup'> Sign up!</Link>
+            </Typography>
           </Box>
-        </Typography>
+        </Center>
       </Box>
     </>
         

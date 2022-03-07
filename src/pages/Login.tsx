@@ -1,11 +1,9 @@
-import Typography from '@mui/material/Typography'
-import { Box, Button, TextField } from '@mui/material'
-import { Link, useNavigate } from 'react-router-dom'
+import { Box, Button, TextField, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@mui/styles'
 import { HeaderBase } from '../components/HeaderBase'
-import { useEffect, useState } from 'react'
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../services/firebase'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { useState } from 'react'
+import { logInWithEmailAndPassword, signInWithGoogle } from '../services/firebase'
 import GoogleButton from 'react-google-button'
 import { Center } from '../components/Center'
 import { Message } from '../components/Message'
@@ -27,13 +25,7 @@ const Login = () => {
     const classes = useStyles();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user] = useAuthState(auth);
-    const navigate = useNavigate();
     const [hasError, setHasError] = useState(false);
-
-    useEffect(() => {
-        if (user) navigate("/feed");
-    }, [user]);
 
     const loginWithEmail = async () => {
         setHasError(false)
@@ -46,7 +38,7 @@ const Login = () => {
         <>
             <HeaderBase />
             <Box sx={{marginTop: '8px'}}>
-                <Typography color="inherit" align="center">
+                <Center>
                     <img
                         src={`${process.env.PUBLIC_URL}/assets/logo.png`}
                         alt="logo"
@@ -70,15 +62,19 @@ const Login = () => {
                         { hasError ? <Center> <Message children='Entered user data are not correct!' /> </Center> : null }
                     </Box>
                     <Box sx={{marginBottom: '10px'}}>
-                        <Link to='/reset'> Reset Password!</Link>
+                        <Typography textAlign='center' color='textSecondary'>
+                            <Link to='/reset'> Reset Password!</Link>
+                        </Typography>
                     </Box>
                     <Box sx={{marginBottom: '10px'}}>
-                        You don't have an account yet? <Link to='/signup'> Sign up!</Link>
+                        <Typography textAlign='center' color='textSecondary' >
+                            You don't have an account yet? <Link to='/signup'> Sign up!</Link>
+                        </Typography>
                     </Box>
                     <Center>
                         <GoogleButton onClick={signInWithGoogle} style = {{width: 300, padding: 2, borderRadius: 5}}/>
                     </Center>
-                </Typography>
+                </Center>
             </Box>
         </>
     )
