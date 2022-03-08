@@ -25,7 +25,7 @@ const signInWithGoogle = async () => {
         const q = query(collection (db, "users"), where("uid", "==", user.uid))
         const results = await getDocs(q);
         if (results.docs.length === 0) {
-            return await addDoc (collection(db, "users"), {
+            return await addDoc(collection(db, "users"), {
                 uid: user.uid,
                 name: user.displayName,
                 authProvider: "google",

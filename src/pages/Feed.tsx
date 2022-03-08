@@ -47,13 +47,11 @@ const Feed = () => {
                 />
             </Center>
             <Box>
-               
-                   {
-                        posts.map(({username, caption, imageUrl, date}) => (
-                            <Post key={date.seconds} username={username.name} caption={caption} imageUrl={imageUrl} date={date.seconds} />
-                        ))
-                    }
-                
+               {
+                    posts.map(({username, caption, imageUrl, date}) => (
+                        <Post key={date.seconds} username={username.name} caption={caption} imageUrl={imageUrl} date={date.seconds} />
+                    ))
+                }        
             </Box>
         </>
     )
