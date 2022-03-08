@@ -1,5 +1,5 @@
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid, FormControlLabel , Checkbox } from '@mui/material'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid, FormControlLabel , Checkbox, TextField, Box } from '@mui/material'
+import { Favorite, FavoriteBorder, Send } from '@mui/icons-material'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline' 
 import { makeStyles } from '@mui/styles'
 
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 export const Post = (props: IPostProps) => {
     const classes = useStyles();
-
+    
     return (
         <Grid container>
             <Grid item container xs={12} justifyContent='center'>
@@ -56,6 +56,17 @@ export const Post = (props: IPostProps) => {
                             <Typography color='textSecondary' component='div'>
                                 <strong>{props.username}</strong> {props.caption} 
                             </Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                                <TextField 
+                                    id="addComment"  
+                                    variant="standard" 
+                                    label="Add comment..." 
+                                    style = {{width: 250}}
+                                />
+                                <IconButton>
+                                    <Send />
+                                </IconButton>
+                            </Box>
                         </CardContent>
                     </Card>
                 </Grid>
