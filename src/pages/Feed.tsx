@@ -7,6 +7,7 @@ import { HeaderMain } from '../components/HeaderMain'
 import { db } from '../services/firebase'
 import { AddCircle } from '@mui/icons-material'
 import { Center } from '../components/Center'
+import { onSnapshot, orderBy, query } from 'firebase/firestore'
 
 const Feed = () => {
     const navigate = useNavigate();
@@ -32,6 +33,12 @@ const Feed = () => {
         getPosts();
     }, []);
 
+    useEffect(() => {
+        onSnapshot(query(collection(db, "posts"), orderBy("date", "desc")), (snapshot) => {
+          setPosts(snapshot.docs.map((doc) => doc.data()));
+        });
+      }, []);
+
     return(
         <>
             <HeaderMain />
@@ -44,8 +51,8 @@ const Feed = () => {
             </Center>
             <Box>
                {
-                    posts.map(({username, caption, imageUrl, date}) => (
-                        <Post key={date.seconds} username={username.name} caption={caption} imageUrl={imageUrl} date={date.seconds} />
+                    posts.map(({ username, caption, imageUrl, date}) => (
+                        <Post key={date} username={username.name} caption={caption} imageUrl={imageUrl} date={date} />
                     ))
                 }        
             </Box>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
-import { collection, addDoc, Timestamp } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
 import Typography from '@mui/material/Typography'
 import { HeaderMain } from '../../components/HeaderMain'
 import { auth, db } from '../../services/firebase'
@@ -22,10 +22,10 @@ const AddPost = () => {
 
     const createPost = async () => {
         await addDoc(postsCollectionRef, {
-          imageUrl,
-          caption,
-          username: { name:user?.displayName, uid: user?.uid },
-          date: Timestamp.now(),
+            imageUrl,
+            caption,
+            username: { name: user?.displayName, uid: user?.uid },
+            date: new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(Date.now())
         });
         navigate("/feed");
       };
