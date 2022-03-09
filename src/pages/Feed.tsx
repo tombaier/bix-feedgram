@@ -17,8 +17,6 @@ const Feed = () => {
 
     const [posts, setPosts] = useState<any[]>([]);
     
-
-    
     useEffect(() => {
         const getPosts = async () => {
             const postsData = await getDocs(collection(db, "posts")).catch((error : any) => {
@@ -28,13 +26,11 @@ const Feed = () => {
                 const data = postsData.docs.map((d) => d.data())
                 setPosts(data)
                 console.log(data)
-                
             }
            
         }
         getPosts();
     }, []);
-    
 
     return(
         <>

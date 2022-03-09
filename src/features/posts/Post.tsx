@@ -17,9 +17,11 @@ const useStyles = makeStyles({
     },
 })
 
+
+
 export const Post = (props: IPostProps) => {
     const classes = useStyles();
-    
+
     return (
         <Grid container>
             <Grid item container xs={12} justifyContent='center'>
