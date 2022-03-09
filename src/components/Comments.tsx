@@ -1,32 +1,27 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { addDoc, collection, onSnapshot, Timestamp } from 'firebase/firestore';
 import { ChangeEvent, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../services/firebase'
 
-const [user] = useAuthState(auth);
-const colRef = collection(db, 'posts', 'comments')
-const [content, setContent] = useState("");
 
-//realtime collection data
-onSnapshot(colRef, (snapshot) => {
-    let comments : any[] = []
-    snapshot.docs.forEach((doc) => {
-        comments.push({...doc.data(), id: doc.id})
-    })
-    console.log(comments)
-})
-
-const createComment = async () => {
-    await addDoc(colRef, {
-        content,
-        username: { name:user?.displayName, uid: user?.uid },
-        date: Timestamp.now(),
-    });
+interface ICommentProps {
+	user: any;
+	content: string;
+    date: any;
 };
 
-const addComment = (event:ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    return setContent(event.target.value)
+const Comments = (props: ICommentProps) => {
+
+    return(
+        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <Typography color='textSecondary' component='div'>
+                <strong>{props.user}</strong> {props.content} <em>{props.date}</em>
+            </Typography>
+        </Box>
+    )
 }
 
 
-export default {createComment, addComment};
+export default Comments;
