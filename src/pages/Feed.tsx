@@ -18,26 +18,13 @@ const Feed = () => {
 
     const [posts, setPosts] = useState<any[]>([]);
     
-    useEffect(() => {
-        const getPosts = async () => {
-            const postsData = await getDocs(collection(db, "posts")).catch((error : any) => {
-                console.log(error)
-            })
-            if(postsData) {
-                const data = postsData.docs.map((d) => d.data())
-                setPosts(data)
-                console.log(data)
-            }
-           
-        }
-        getPosts();
-    }, []);
+    
 
     useEffect(() => {
         onSnapshot(query(collection(db, "posts"), orderBy("date", "desc")), (snapshot) => {
           setPosts(snapshot.docs.map((doc) => doc.data()));
         });
-      }, []);
+    }, []);
 
     return(
         <>
