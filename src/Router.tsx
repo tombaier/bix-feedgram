@@ -12,16 +12,16 @@ import { Loading } from '../src/components/Loading'
 const isProtectedRoute = () => {
     return window.location.pathname.indexOf("login")===-1 &&
     window.location.pathname.indexOf("signup")===-1 &&
-    window.location.pathname.indexOf("reset")===-1
+    window.location.pathname.indexOf("reset")===-1 &&
+    window.location.pathname !== "/"
 }
 
 export const Router = () => {
     const navigate = useNavigate();
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     if(loading) {return <Loading /> }
     if(!user && isProtectedRoute()) {navigate("/login")} 
     if(user && !isProtectedRoute()) {navigate("/feed")} 
-    console.log(user)
     
     return (
         <Routes>
