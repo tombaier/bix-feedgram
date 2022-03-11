@@ -2,6 +2,8 @@ import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButt
 import { Favorite, FavoriteBorder, Send } from '@mui/icons-material'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline' 
 import { makeStyles } from '@mui/styles'
+import { useState } from 'react';
+import Comments from '../../components/Comments';
 
 interface IPostProps {
 	username: any;
@@ -21,11 +23,14 @@ const useStyles = makeStyles({
 
 export const Post = (props: IPostProps) => {
     const classes = useStyles();
+    const [showComments, setShowComments] = useState(false)
+    const [showLiked, setShowLiked] = useState(false)
+    
 
     return (
         <Grid container>
             <Grid item container xs={12} justifyContent='center'>
-                <Grid item xs={10} md={4} sx={{paddingBottom:'20px'}}> 
+                <Grid item xs={10} md={4} sx={{marginBottom:'20px'}}> 
                     <Card>
                         <CardHeader 
                             avatar = {<Avatar />}
@@ -37,38 +42,32 @@ export const Post = (props: IPostProps) => {
                             <img alt="postImg" className={classes.post_img} src={props.imageUrl} />
                         </CardMedia>
 
-                        <CardActions disableSpacing sx={{paddingBottom:'1px'}}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox 
-                                        icon={<FavoriteBorder />} 
-                                        checkedIcon={<Favorite color='error'/>}
-                                        name="likeButton"
-                                    />
-                                }
-                                label=""
-                            />
-
-                            <IconButton>
-                                    <ChatBubbleOutlineIcon />
+                        <CardActions disableSpacing sx={{marginBottom:'1px'}}>
+                            <IconButton 
+                                onClick={() => {
+                                    if(showLiked == false) return setShowLiked(true)
+                                    if(showLiked == true) return setShowLiked(false)
+                                }} 
+                            >
+                               { showLiked ? <Favorite color='error' /> : <FavoriteBorder />}
+                            </IconButton>
+                            
+                          
+                            <IconButton 
+                                onClick={() => {
+                                    if(showComments == false) return setShowComments(true)
+                                    if(showComments == true) return setShowComments(false)
+                                }} 
+                            >
+                                <ChatBubbleOutlineIcon />
                             </IconButton>
                         </CardActions>
 
-                        <CardContent sx={{paddingBlockStart:'1px'}}>
+                        <CardContent sx={{marginTop:'1px'}}>
                             <Typography color='textSecondary' component='div'>
                                 <strong>{props.username}</strong> {props.caption} 
                             </Typography>
-                            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                                <TextField 
-                                    id="addComment"  
-                                    variant="standard" 
-                                    label="Add comment..." 
-                                    style = {{width: 250}}
-                                />
-                                <IconButton>
-                                    <Send />
-                                </IconButton>
-                            </Box>
+                            { showComments ? <Comments user="Tom Baier" date="03/09/2022, 05:12 PM" content="I really appreciate your" /> : null}
                         </CardContent>
                     </Card>
                 </Grid>
@@ -76,3 +75,5 @@ export const Post = (props: IPostProps) => {
         </Grid>
     )
 }
+
+
