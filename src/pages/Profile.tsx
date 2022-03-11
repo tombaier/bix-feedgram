@@ -30,7 +30,7 @@ const Profile = () => {
                     {user?.email}
                 </Typography>
 
-                <Box p={{ xs: 2, sm: 3, md: 5 }}>
+                <Box p={{ xs: 10, md: 4 }}>
                     <Paper>
                         <Box p={5}>
                                 <Typography color='textSecondary' component='div'>
