@@ -8,6 +8,7 @@ import { db } from '../services/firebase'
 import { AddCircle } from '@mui/icons-material'
 import { Center } from '../components/Center'
 import { onSnapshot, orderBy, query } from 'firebase/firestore'
+import { Typography } from '@mui/material'
 
 const Feed = () => {
     const navigate = useNavigate();
@@ -17,12 +18,12 @@ const Feed = () => {
     }
 
     const [posts, setPosts] = useState<any[]>([]);
-    
-    
 
     useEffect(() => {
         onSnapshot(query(collection(db, "posts"), orderBy("date", "desc")), (snapshot) => {
-          setPosts(snapshot.docs.map((doc) => doc.data()));
+            setPosts(snapshot.docs.map((doc) => {
+                return {id: doc.id, ...doc.data()}
+            }));
         });
     }, []);
 
@@ -30,16 +31,21 @@ const Feed = () => {
         <>
             <HeaderMain />
             <Center sx={{ marginTop: '20px', marginBottom: '20px' }}>
-                <AddCircle
-                    color='primary'
-                    fontSize='large'
-                    onClick = {createNewPost}
-                />
+                <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                    <AddCircle
+                        color='primary'
+                        fontSize='large'
+                        onClick = {createNewPost}
+                    /> 
+                    <Typography color='textSecondary' component='div' >
+                        Add Post
+                    </Typography>
+                </Box>
             </Center>
             <Box>
-               {
-                    posts.map(({ username, caption, imageUrl, date}) => (
-                        <Post key={date} username={username.name} caption={caption} imageUrl={imageUrl} date={date} />
+                {
+                    posts.map(({ username, caption, imageUrl, date, id}) => (
+                        <Post key={id} username={username.name} caption={caption} imageUrl={imageUrl} date={date} id={id} />
                     ))
                 }        
             </Box>
