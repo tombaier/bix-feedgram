@@ -1,15 +1,17 @@
-import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid, FormControlLabel , Checkbox, TextField, Box } from '@mui/material'
-import { Favorite, FavoriteBorder, Send } from '@mui/icons-material'
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Grid } from '@mui/material'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline' 
 import { makeStyles } from '@mui/styles'
 import { useState } from 'react';
-import Comments from '../../components/Comments';
+import Comments from '../Comments';
+import Likes from '../Likes';
+
 
 interface IPostProps {
 	username: any;
 	caption: string;
     imageUrl: string;
     date: any;
+    id: any;
 };
 
 const useStyles = makeStyles({
@@ -20,12 +22,9 @@ const useStyles = makeStyles({
 })
 
 
-
 export const Post = (props: IPostProps) => {
     const classes = useStyles();
     const [showComments, setShowComments] = useState(false)
-    const [showLiked, setShowLiked] = useState(false)
-    
 
     return (
         <Grid container>
@@ -43,15 +42,8 @@ export const Post = (props: IPostProps) => {
                         </CardMedia>
 
                         <CardActions disableSpacing sx={{marginBottom:'1px'}}>
-                            <IconButton 
-                                onClick={() => {
-                                    if(showLiked == false) return setShowLiked(true)
-                                    if(showLiked == true) return setShowLiked(false)
-                                }} 
-                            >
-                               { showLiked ? <Favorite color='error' /> : <FavoriteBorder />}
-                            </IconButton>
                             
+                            <Likes postId={props.id} />
                           
                             <IconButton 
                                 onClick={() => {
@@ -63,11 +55,11 @@ export const Post = (props: IPostProps) => {
                             </IconButton>
                         </CardActions>
 
-                        <CardContent sx={{marginTop:'1px'}}>
+                        <CardContent sx={{marginTop:'1px', marginBottom: '1px'}}>
                             <Typography color='textSecondary' component='div'>
                                 <strong>{props.username}</strong> {props.caption} 
                             </Typography>
-                            { showComments ? <Comments user="Tom Baier" date="03/09/2022, 05:12 PM" content="I really appreciate your" /> : null}
+                            { showComments ? <Comments postId={props.id} /> : null}
                         </CardContent>
                     </Card>
                 </Grid>
@@ -75,5 +67,3 @@ export const Post = (props: IPostProps) => {
         </Grid>
     )
 }
-
-
